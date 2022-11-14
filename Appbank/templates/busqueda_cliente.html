@@ -1,0 +1,20 @@
+{% extends "padre.html" %}
+
+{% load  static  %}
+
+{% block contenidoquecambia%}
+
+<form action ="{% url 'buscar' %}" method="GET">{% csrf_token %}
+    <p>Ingrese numero de documento</p>
+       
+       <input type = "number "  name = "documento"/></p> 
+       
+       
+       
+       <input type="submit" value = "Buscar Cliente"/>
+
+</form>
+
+
+
+{% endblock contenidoquecambia %}

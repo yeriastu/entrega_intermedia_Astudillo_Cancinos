@@ -1,0 +1,21 @@
+{% extends "padre.html" %}
+
+
+{% block contenidoquecambia%}
+
+<h1>Lista  de Productos</h1>
+
+<h4> Bienvenido a nuestros productos y servicios, Coderbank</h4>
+
+<ul>
+    {%for produc in lista_produc%}
+        
+    <li>{{produc.nombre}} - este producto {{produc.codigo}}  </li>
+
+    {%endfor%}
+    
+</ul>
+
+<a href="{% url 'ProductoFormulario' %}"> Agregar producto</a>
+{% endblock contenidoquecambia %}
+    

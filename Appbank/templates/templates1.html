@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coderbank</title>
+</head>
+<body>
+    <style>
+        body{background-color: darksalmon;}
+
+        .color-fondo {
+            background-color: darkseagreen;
+            padding: 55px;
+        }
+       
+
+    </style>
+    
+</body>
+    <div class="color-fondo">
+        <h1>es la pagina inicial del banco CODER</h1> 
+    </div>
+
+    <h1> Los saluda {{my_name}}</h1>
+
+    <ul>
+        
+        {% for nota in notas  %}
+
+            {% if nota >= 6 %}
+                <li style="color: rgb(6, 74, 6) ;">
+                 {{nota}} Estas Aprobado/a
+                 </li>
+            {%else%}
+                <li style="color: rgb(74, 26, 6) ;">
+                    {{nota}} Estas desaprobado/a, esforzate para la proxima
+                </li>
+                
+            {%endif%}
+
+        {% endfor %}
+            
+
+    </ul>
+</html>

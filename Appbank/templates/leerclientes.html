@@ -1,0 +1,36 @@
+{% extends "padre.html" %}
+
+
+{% block contenidoquecambia%}
+
+<h1>Lista de Clientes</h1>
+
+    <ul>
+        {% for cliente in clientes%}
+            <li>
+                {{cliente}}
+        
+            </li>
+            <div>
+
+                <form action ="{% url 'EliminaCliente' cliente.id %}" method="POST">{% csrf_token %}
+                    <button type = "submit"> Eliminar </button>
+                </form>
+                
+                <button>
+
+                    <a href="{ url 'EditarCliente' cliente.id % }"> Editar </a>
+
+                </button>
+            </div>
+
+            {%endfor%}        
+
+
+
+    </ul>
+
+<a href="{% url 'ClienteFormulario' %}"> Agregar cliente</a>
+
+
+{% endblock contenidoquecambia %}

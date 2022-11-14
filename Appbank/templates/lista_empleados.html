@@ -1,0 +1,20 @@
+{% extends "padre.html" %}
+
+
+{% block contenidoquecambia%}
+
+<h1>Lista de Empleados </h1>
+
+<h4> Estos son los empleados activos al dia de hoy, queremos seguir creciendo</h4>
+
+
+    <li> nombre{{empleado.nombre}} - Legajo{{empleado.legajo}} </li>
+
+    <a href="{% url 'EmpleadoFormulario' %}"> Agregar empleado  </a>
+    <br>
+    </br>
+<h1> Si queres sumarte a nuestro equipo dejanos tu CV </h1>
+
+    <a class="btn btn-primary" href="#signup">Ingresar CV</a>
+
+{% endblock contenidoquecambia %}
