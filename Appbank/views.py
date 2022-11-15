@@ -99,9 +99,11 @@ def eliminarcliente(request, id):
     return render(request, "leerclientes.html", contexto)
 
 
-def editarcliente(request,id):
+def editarcliente(request, id):
+  
     clientes = Cliente.objects.get(id=id)
-    
+  
+  
     if request.method == 'POST':
         mi_formulario = ClienteFormulario(request.POST)
         
@@ -109,21 +111,25 @@ def editarcliente(request,id):
         
             data = mi_formulario.cleaned_data
         
-            cliente.nombre = data['nombre'],
-            cliente.apellido=data['apellido'],
-            cliente.documento=data['documento'], 
-            cliente.nro_cuenta=data['nro_cuenta'] 
-        
-            cliente.save()  
-        return HttpResponseRedirect('/Appbank/')    
+            clientes.nombre = data['nombre']
+            clientes.apellido = data['apellido']
+            clientes.documento = data['documento'] 
+            clientes.nro_cuenta = data['nro_cuenta'] 
+            
+            clientes.save()  
+            
+        return HttpResponseRedirect('/leerlistaclientes/')    
     else:  
          mi_formulario = ClienteFormulario(initial= {
-            'nombre' : cliente.nombre,
-            'apellido': cliente.apellido,
-            'documento': cliente.documento, 
-            'nro_cuenta': cliente.nro_cuenta,
+            'nombre' : clientes.nombre,
+            'apellido': clientes.apellido,
+            'documento': clientes.documento, 
+            'nro_cuenta': clientes.nro_cuenta,
+        
          })
-         return render(request, 'editarcliente.html', {'mi_formulario': mi_formulario, "id":cliente.id})
+         
+        
+         return render(request, 'editarcliente.html', {"mi_formulario": mi_formulario, "id": clientes.id})
      
     
 

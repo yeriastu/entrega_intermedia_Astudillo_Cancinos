@@ -5,7 +5,7 @@ from Appbank import views
 
 from django.urls import path, include
 from Appbank.views import empleado, lista_productos, cliente, clienteFormulario, empleadoFormulario, produtoFormulario
-from .views import empleado, lista_personal, inicio, produc, listadoclientes, eliminarcliente,editarcliente
+from .views import empleado, lista_personal, inicio, produc, listadoclientes, eliminarcliente, editarcliente
 
 urlpatterns = [
     path('', inicio),
@@ -20,6 +20,6 @@ urlpatterns = [
     path('productoForm/', produtoFormulario, name="ProductoFormulario"),
     path('leerlistaclientes/', listadoclientes, name="listaclientes"),
     path('elimina-clientes/<int:id>', eliminarcliente, name="EliminaCliente"),
-    path('edita-clientes/<int:id>', editarcliente, name="EditarCliente"),
+    path('EditarClientes/<int:id>', editarcliente, name="EditarCliente"),
     
     ]

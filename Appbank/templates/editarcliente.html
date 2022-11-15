@@ -2,12 +2,14 @@
 
 {% load  static  %}
 
-{% block contenidoquecambia%}
+{% block contenidoquecambia %}
 
-<form action ="{% url 'EditarCliente' id %}" method="POST">{% csrf_token %}
+<form action ="{% url 'EditarCliente' id%}" method="POST">{% csrf_token %}
 
         {{ mi_formulario.as_p }}
         
 <input type="submit" value = "Actualizar"/>
 
 </form>
+
+{% endblock contenidoquecambia %}

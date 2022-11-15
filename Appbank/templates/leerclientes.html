@@ -1,7 +1,5 @@
 {% extends "padre.html" %}
-
-
-{% block contenidoquecambia%}
+{% block contenidoquecambia %}
 
 <h1>Lista de Clientes</h1>
 
@@ -19,7 +17,7 @@
                 
                 <button>
 
-                    <a href="{ url 'EditarCliente' cliente.id % }"> Editar </a>
+                    <a href="{% url 'EditarCliente' cliente.id %}"> Editar </a>
 
                 </button>
             </div>
@@ -30,7 +28,7 @@
 
     </ul>
 
-<a href="{% url 'ClienteFormulario' %}"> Agregar cliente</a>
+        <a href="{% url 'ClienteFormulario' %}"> Agregar cliente</a>
 
 
 {% endblock contenidoquecambia %}
