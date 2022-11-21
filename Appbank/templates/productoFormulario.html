@@ -4,12 +4,11 @@
 
 {% block contenidoquecambia%}
 
-<form action ="" >
+<form action ="{% url 'ProductoFormulario' %}" method="POST">{% csrf_token %}
 
 <h1>Productos/Servicios </h1>
 
-<p>Producto: <input type = "text"    name = "nombre" ></p> 
-<p> Codigo: <input type = "number" name="nro_cuenta"> </p> 
+   {{ mi_formulario.as_p }}
 
 
 <input type="submit" value = "Enviar"/>

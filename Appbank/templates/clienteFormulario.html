@@ -4,7 +4,7 @@
 
 {% block contenidoquecambia%}
 
-<form action ="{% url 'ClienteFormulario' id %}" method="POST">{% csrf_token %}
+<form action ="{% url 'ClienteFormulario' %}" method="POST">{% csrf_token %}
 
         {{ mi_formulario.as_p }}
         

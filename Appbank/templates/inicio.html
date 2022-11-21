@@ -1,10 +1,15 @@
-{% extends "padre.html" %}
+{% extends 'padre.html' %}
 
+{% load static %}
 
-{% block contenidoquecambia%}
-
+{% block contenidoQueCambia %}
+        
 <h1>Vista de Inicio</h1>
 
-<h4> Bienvenido a tu nuevo  Banco amigo, Coderbank</h4>
+<h4>{{mensaje}}</h4>
 
-{% endblock contenidoquecambia %}
+
+<p><h4> Bienvenido a tu nuevo  Banco amigo, Coderbank</h4></p>
+
+{% endblock contenidoQueCambia %}
+

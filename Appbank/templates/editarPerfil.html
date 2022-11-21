@@ -1,0 +1,17 @@
+{% extends 'padre.html' %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+        
+    <form method="POST">{% csrf_token %}
+
+        {{miFormulario.as_p}}
+
+        {{mensaje}}
+
+        <input type="submit" value="Actualizar"/>
+
+    </form>
+
+{% endblock contenidoQueCambia %}

@@ -4,16 +4,9 @@
 
 {% block contenidoquecambia%}
 
-
 <form action ="{% url 'EmpleadoFormulario' %}" method="POST">{% csrf_token %}
-    
-<h1>Empleados</h1>
-
-<p> Empleado Nombre: <input type = "text"    name = "nombre" ></p> 
-<p> Apellido: <input type = "text"    name = "nombre" ></p>
-<p> Nro_Documento: <input type = "number" name="documento"> </p> 
-<p> Nro_Legajo: <input type = "number" name="nro_legajo"> </p> 
-
+   
+        {{ mi_formulario.as_p }}
 
 <input type="submit" value = "Enviar"/>
 

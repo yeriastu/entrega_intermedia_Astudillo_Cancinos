@@ -22,9 +22,20 @@
             <div class="container">
                 <a class="navbar-brand" href="#!">Inicio</a>
                 <a class="navbar-brand" href="{% url 'Productos' %}">Productos</a>
-                <a class="navbar-brand" href="{% url 'listaclientes' %}">Clientes</a>
+                <a class="navbar-brand" href="{% url 'Clientes' %}">Clientes</a>
                 <a class="navbar-brand" href="{% url 'Empleados' %}">Empleados</a>
-                                <a class="btn btn-primary" href="#signup">Iniciar</a>
+                                
+                {% if user.is_authenticated %}
+                <p>Bienvenido {{user.username}}</p>
+                <a class="btn btn-primary" href="{% url 'Logout' %}">Logout</a>
+                {% else %}
+                    <a class="btn btn-primary" href="{% url 'Login' %}">Login</a>
+                {% endif %}
+
+
+
+
+
             </div>
         </nav>
         <!-- Masthead-->
@@ -34,7 +45,7 @@
                     <div class="col-xl-6">
                         <div class="text-center text-white">
                             <!-- Page heading-->
-                            <h1 class="mb-5">Nuestra web Intermedia de Django-CoderHouse!</h1>
+                            <h1 class="mb-5">Bienvenido a Banco Coder, tu nuevo Banco Amigo</h1>
                             <!-- Signup form-->
                             <!-- * * * * * * * * * * * * * * *-->
                             <!-- * * SB Forms Contact Form * *-->
@@ -46,12 +57,8 @@
                             <form class="form-subscribe" id="contactForm" data-sb-form-api-token="API_TOKEN">
                                 <!-- Email address input-->
                                 <div class="row">
-                                    <div class="col">
-                                        <input class="form-control form-control-lg" id="emailAddress" type="email" placeholder="Email Address" data-sb-validations="required,email" />
-                                        <div class="invalid-feedback text-white" data-sb-feedback="emailAddress:required">Email Address is required.</div>
-                                        <div class="invalid-feedback text-white" data-sb-feedback="emailAddress:email">Email Address Email is not valid.</div>
-                                    </div>
-                                    <div class="col-auto"><button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit">Submit</button></div>
+                                   
+                                    
                                 </div>
                                 <!-- Submit success message-->
                                 <!---->
@@ -78,7 +85,8 @@
         <!-- Icons Grid-->
         
         {% block contenidoquecambia %}
-            
+       
+
         {% endblock contenidoquecambia %}
             
         <!-- Footer-->

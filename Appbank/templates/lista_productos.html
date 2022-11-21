@@ -5,17 +5,34 @@
 
 <h1>Lista  de Productos</h1>
 
-<h4> Bienvenido a nuestros productos y servicios, Coderbank</h4>
-
 <ul>
-    {%for produc in lista_produc%}
+    {%for producto in listaproductos %}
         
-    <li>{{produc.nombre}} - este producto {{produc.codigo}}  </li>
+        <li>
+            {{productos.nombre}} - este producto {{productos.codigo}}  
+
+        </li>
+        <div>
+
+            <form action ="{% url 'EliminaProducto' producto.id %}" method="POST">{% csrf_token %}
+                <button type = "submit"> Eliminar </button>
+            </form>
+            
+            <button>
+
+                <a href="{% url 'EditarProducto' producto.id %}"> Actualizar </a>
+
+            </button>
+        </div>
+
+
+
+
 
     {%endfor%}
     
 </ul>
 
-<a href="{% url 'ProductoFormulario' %}"> Agregar producto</a>
+<a href="{% url 'ProductoFormulario' %}"> Agregar nuevo producto</a>
 {% endblock contenidoquecambia %}
     
