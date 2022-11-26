@@ -13,8 +13,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .forms import ClienteFormulario, EmpleadoFormulario, ProductoFormulario, UserEditForm, UserRegisterForm, UserCreationForm
-from .models import Cliente, Productos, Empleado  #Avatar
+from .forms import ClienteFormulario, EmpleadoFormulario, ProductoFormulario, UserEditForm, UserRegisterForm 
+from .models import Cliente, Productos, Empleado , Avatar
 # Create your views here.
 
 def empleado(request, nombre, apellido, documento, legajo, empleado):
@@ -35,8 +35,13 @@ def empleado(request, nombre, apellido, documento, legajo, empleado):
 
 
 def inicio(request):
-
-    return render(request,'inicio.html')
+    try: 
+        avatar = Avatar.objects.get(user=request.user)
+        return render(request,'inicio.html', {"avatar" : avatar.imagen.url})
+    except:
+        
+        return render(request, 'inicio.html')
+    
     
 
 #def produc(request, nombre, codigo):
@@ -66,9 +71,7 @@ def cliente(request, nombre, apellido, documento, nro_cuenta):
 #     lista = Cliente.objects.all 
 #     return render(request, "lista_clientes.html", {"lista_cli": lista })
                  
-def empleadoFormulario(request):
-     
-    return render(request, 'empleadoFormulario.html', )
+
  
 def produtoFormulario(request): # crea producto 
     if request.method == 'POST':
@@ -83,14 +86,14 @@ def produtoFormulario(request): # crea producto
          mi_formulario = ProductoFormulario()
     return render(request, 'productoFormulario.html', {'mi_formulario': mi_formulario})
 
-def lista_productos(request):
+def lista_productos(request): # lista producto
     
     productos = Productos.objects.all
     contexto= {"productos" : productos}
     
     return render(request, "lista_productos.html", contexto)
 
-def eliminarproducto(request, id): 
+def eliminarproducto(request, id):  #elimina producto 
     if request.method == 'POST':
         productos = Productos.objects.get(id=id)    
         productos.delete()
@@ -100,7 +103,7 @@ def eliminarproducto(request, id):
     return render(request, "lista_productos.html", contexto)
 
 
-def editarproducto(request, id):  
+def editarproducto(request, id):  # edita para actualizar producto
   
     productos = Productos.objects.get(id=id)
     
@@ -125,6 +128,70 @@ def editarproducto(request, id):
          })
                  
          return render(request, 'editarproducto.html', {"mi_formulario": mi_formulario, "id": productos.id})
+
+
+     
+   
+def empleadoFormulario(request): # crea empleado
+    if request.method == 'POST':
+        mi_formulario = EmpleadoFormulario(request.POST)
+        print(mi_formulario)
+        if mi_formulario.is_valid():
+            data = mi_formulario.cleaned_data
+            empleado = Empleado(nombre=data['nombre'], apellido=data['apellido'], documento=data['documento'], legajo=data['legajo']) 
+            empleado.save()  
+        return redirect('/empleadoForm/')    
+    else:  
+         mi_formulario = ClienteFormulario()
+         return render(request, 'empleadoFormulario.html', {'mi_formulario': mi_formulario})
+        
+def listadoempleados(request):  #lista emplados
+    empleados = Empleado.objects.all()
+    contexto= {"empleados" : empleados}
+    return render(request, "listado_empleados.html", contexto) 
+
+def eliminarempleado(request, id): # elimina registro empleado
+    if request.method == 'POST':
+        empleados = Empleado.objects.get(id=id)    
+        empleados.delete()
+        empleados = Empleado.objects.all()
+        contexto= {"empleados" : empleados}
+        
+    return render(request, "listado_empleados.html", contexto)
+
+def editarempleado(request, id):  # edita empleado 
+        
+    empleados = Empleado.objects.get(id=id)
+    
+    if request.method == 'POST':
+        mi_formulario = EmpleadoFormulario(request.POST)
+        
+        if mi_formulario.is_valid():
+        
+            data = mi_formulario.cleaned_data
+        
+            empleados.nombre = data['nombre']
+            empleados.apellido = data['apellido']
+            empleados.documento = data['documento'] 
+            empleados.legajo = data['legajo'] 
+            
+            empleados.save()  
+            
+        return HttpResponseRedirect('/empleadoForm/')    
+    else:  
+         mi_formulario = EmpleadoFormulario(initial= {
+            'nombre' : empleados.nombre,
+            'apellido': empleados.apellido,
+            'documento': empleados.documento, 
+            'nro_legajo': empleados.legajo
+        
+         })
+         
+        
+         return render(request, 'update_empleado.html', {"mi_formulario": mi_formulario, "id": empleados.id})
+
+
+
 
 # todo cliente funciona, crear// editar// eliminar
 def clienteFormulario(request): # crea cliente
@@ -194,7 +261,7 @@ def editarcliente(request, id): # edita cliente
 
     
 
-class EmpleadoList(LoginRequiredMixin, ListView): 
+class EmpleadoList(ListView): 
   
     model =  Empleado   
     template_name= 'lista_empleados.html' 
@@ -203,7 +270,7 @@ class EmpleadoList(LoginRequiredMixin, ListView):
 class EmpleadoDetalle(DetailView): 
     
     model =  Empleado   
-    template_name= 'detalle_empleados.html' 
+    template_name= 'empleadoFormulario.html' 
     
     
 class EmpleadoCrear(CreateView): 
@@ -320,7 +387,7 @@ def editar_perfil(request):
 
         return render(request, "editarPerfil.html", {"miFormulario": miFormulario})
     
-# def about(request):
-#         return render(request, "about.html")  
-#         print(about)  
+def About(request):
+         return render(request,"About.html")  
+       
         

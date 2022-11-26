@@ -13,12 +13,25 @@
         {% for empleado in empleados %}
             <li>
               
-                {{empleado.nombre}} - {{empleado.apellido}}
+               Nombre:  {{empleado.nombre}} - Apellido  {{empleado.apellido}}
                    
             </li>
-            
+            <div>
+                <form action ="{% url 'EliminaEmpleado' empleado.id %}" method="POST">{% csrf_token %}
+                    <button type = "submit"> Eliminar </button>
+
+                <button>
+                    <a href="{% url 'ActualizaEmpleado' empleado.id %}">Actualizar datos</a>
+                </button>
+            </div>    
         {% endfor %}
             
+    </ul>
+    <a href="{% url 'EmpleadoFormulario' %}"> Dejanos tu CV </a>
+
+
+    <ul>
+        <input type="button" onclick="history.back()" name="Atrás" value="Atrás">
     </ul>
 
 {% endblock contenidoquecambia %}

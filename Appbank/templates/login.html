@@ -4,7 +4,7 @@
 
 {% block contenidoquecambia %}
         
-    <form action="{% url 'Login'%}" method="POST">{% csrf_token %}
+    <form action="{% url 'Login' %}" method="POST">{% csrf_token %}
 
     {{miFormulario.as_p}}
 
@@ -16,4 +16,4 @@
 
        
 
-        {% endblock contenidoquecambia %}
+{% endblock contenidoquecambia %}

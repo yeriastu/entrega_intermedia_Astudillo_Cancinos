@@ -6,10 +6,10 @@
 <h1>Lista  de Productos</h1>
 
 <ul>
-    {%for producto in listaproductos %}
+    {%for producto in productos %}
         
         <li>
-            {{productos.nombre}} - este producto {{productos.codigo}}  
+            Nombre :  {{producto.nombre}} - Codigo : {{producto.codigo}}  
 
         </li>
         <div>
@@ -34,5 +34,7 @@
 </ul>
 
 <a href="{% url 'ProductoFormulario' %}"> Agregar nuevo producto</a>
+
+
 {% endblock contenidoquecambia %}
     

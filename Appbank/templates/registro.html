@@ -2,14 +2,14 @@
 
 {% load static %}
 
-{% block contenidoQueCambia %}
+{% block contenidoquecambia %}
         
     <form action="{% url 'Registrar' %}" method="POST">{% csrf_token %}
 
         {{miFormulario.as_p}}
 
-        <button  type="submit"> value="Registrar"</button>
+        <button type="submit"> value="Registrar"</button>
 
     </form>
 
-{% endblock contenidoQueCambia %}
+{% endblock contenidoquecambia %}
