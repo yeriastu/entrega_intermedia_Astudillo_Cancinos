@@ -7,8 +7,8 @@ from Appbank import views
 from django.urls import path, include
 from .views import empleado, cliente, clienteFormulario, empleadoFormulario, produtoFormulario
 from .views import inicio,listadoclientes, eliminarcliente, editarcliente, empleadoFormulario, About, EmpleadoUpdate, EmpleadoCrear, EmpleadoDelete, EmpleadoDetalle   
-from .views import lista_productos,editarproducto, eliminarproducto, editar_perfil, register, login_request, eliminarempleado, editarempleado, editarempleado, listadoempleados, EmpleadoList
-from django.contrib.auth.views import LogoutView
+from .views import lista_productos,editarproducto, eliminarproducto, editar_perfil, register, login_request, eliminarempleado, editarempleado, listadoempleados, EmpleadoList
+from django.contrib.auth.views import LogoutView 
 
 urlpatterns = [
     path('', inicio, name='Inicio'),
@@ -28,7 +28,7 @@ urlpatterns = [
     path('leerlistaempleados/', listadoempleados, name="listaempleados"),
     path('elimina-empleado/<int:id>', eliminarempleado, name="EliminaEmpleado"),
     path('EditarEmpleado/<int:id>', editarempleado, name="EditarEmpleado"),
-    path('detalle-Empleado/<pk>', EmpleadoDetalle.as_view(), name="Detalle-Empleado"),
+    path('detalle-Empleado/<pk>', EmpleadoDetalle.as_view(), name="DetalleEmpleado"),
     path('creaempleado/', EmpleadoCrear.as_view(), name="Creaempleado"),
     path('actualizarempleado/<pk>', EmpleadoUpdate.as_view(), name="ActualizaEmpleado"),
     path('eliminarempleado/<pk>', EmpleadoDelete.as_view(), name="EliminaEmpleado"),

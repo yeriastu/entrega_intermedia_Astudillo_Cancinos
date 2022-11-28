@@ -8,11 +8,13 @@
 
         {{ mi_formulario.as_p }}
         
-<input type="submit" value = "Enviar"/>
+        <input type="submit" value = "Enviar"/>
 
 </form>
 
-
+        <button>
+        <a href="{% url 'ClienteFormulario' %}"> Agregar cliente</a>
+        </button>
 
 {% endblock contenidoquecambia %}
 

@@ -1,8 +1,5 @@
 {% extends 'padre.html' %}
 
-{% load static %}
-
-
 {% block contenidoquecambia %}
 
     <h1>Lista de Empleados</h1>
@@ -19,15 +16,18 @@
             <div>
                 <form action ="{% url 'EliminaEmpleado' empleado.id %}" method="POST">{% csrf_token %}
                     <button type = "submit"> Eliminar </button>
-
+                </form>
+                
                 <button>
-                    <a href="{% url 'ActualizaEmpleado' empleado.id %}">Actualizar datos</a>
+
+                    <a href="{% url 'EditarEmpleado' empleado.id %}">Actualizar datos</a>
+
                 </button>
             </div>    
         {% endfor %}
             
     </ul>
-    <a href="{% url 'EmpleadoFormulario' %}"> Dejanos tu CV </a>
+               <a href="{% url 'EmpleadoFormulario' %}"> Agrega nuevo Empleado </a>
 
 
     <ul>

@@ -15,7 +15,7 @@ class EmpleadoFormulario(forms.Form):
         
      nombre = forms.CharField()
      apellido = forms.CharField()
-     nro_legajo = forms.IntegerField ()
+     legajo = forms.IntegerField ()
      documento = forms.IntegerField()
          
     

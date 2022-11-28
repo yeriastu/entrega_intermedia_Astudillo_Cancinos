@@ -17,9 +17,9 @@ from .forms import ClienteFormulario, EmpleadoFormulario, ProductoFormulario, Us
 from .models import Cliente, Productos, Empleado , Avatar
 # Create your views here.
 
-def empleado(request, nombre, apellido, documento, legajo, empleado):
+def empleado(request, nombre, apellido, documento, legajo):
     
-   empleado = Empleado(nombre=nombre, apellido=apellido, documento=documento, legajo=legajo, empleado=empleado) 
+   empleado = Empleado(nombre=nombre, apellido=apellido, documento=documento, legajo=legajo) 
    
    empleado.save()
    
@@ -79,8 +79,8 @@ def produtoFormulario(request): # crea producto
         print(mi_formulario)
         if mi_formulario.is_valid():
             data = mi_formulario.cleaned_data
-            cliente = Productos(nombre=data['nombre'], codigo=data['codigo']) 
-            cliente.save()  
+            productos = Productos(nombre=data['nombre'], codigo=data['codigo']) 
+            productos.save()  
         return redirect('/productoForm/')    
     else:  
          mi_formulario = ProductoFormulario()
@@ -183,12 +183,12 @@ def editarempleado(request, id):  # edita empleado
             'nombre' : empleados.nombre,
             'apellido': empleados.apellido,
             'documento': empleados.documento, 
-            'nro_legajo': empleados.legajo
+            'legajo': empleados.legajo
         
          })
          
         
-         return render(request, 'update_empleado.html', {"mi_formulario": mi_formulario, "id": empleados.id})
+         return render(request, 'editarempleado.html', {"mi_formulario": mi_formulario, "id": empleados.id})
 
 
 
@@ -271,28 +271,27 @@ class EmpleadoDetalle(DetailView):
     
     model =  Empleado   
     template_name= 'empleadoFormulario.html' 
-    
+    context_object_name = "empleados"
     
 class EmpleadoCrear(CreateView): 
     
     model =  Empleado   
     template_name= 'crear_empleados.html'     
-    Success_url = '/Appbank/'
+    context_object_name = "empleados"
     
     
 class EmpleadoUpdate(UpdateView): 
     
     model =  Empleado   
     template_name= 'update_empleados.html'     
-    fields = ('__all__')
-    success_url = '/Appbank/'
+    context_object_name = "empleados"
     
     
 class EmpleadoDelete(DeleteView): 
     
     model =  Empleado   
     template_name= 'delete_empleados.html'             
-    success_url = '/Appbank/'
+    context_object_name = "empleados"
     
 def login_request(request):
         

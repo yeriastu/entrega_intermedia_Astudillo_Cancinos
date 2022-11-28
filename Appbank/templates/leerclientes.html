@@ -25,10 +25,12 @@
             {%endfor%}        
 
 
-
     </ul>
 
         <a href="{% url 'ClienteFormulario' %}"> Agregar cliente</a>
 
+        <ul>
+            <input type="button" onclick="history.back()" name="Atrás" value="Atrás">
+        </ul>
 
 {% endblock contenidoquecambia %}
